@@ -67,7 +67,7 @@ const navLinks = document.getElementById('nav-links');
 navToggle.addEventListener('click', () => navLinks.classList.toggle('active'));
 
 // ═══════════ TYPING EFFECT ═══════════
-const phrases = ['Java Full Stack Developer', 'Problem Solver', 'Clean Code Enthusiast', 'Web Developer'];
+const phrases = ['Java Full Stack Developer', 'NEURAL_NET.ARCHITECT', 'ZERO_BUG_PROTOCOL // ACTIVE', 'SYS.WEB.ENGINEER'];
 let phraseIdx = 0, charIdx = 0, isDeleting = false;
 const typingEl = document.getElementById('typing-text');
 
