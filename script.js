@@ -97,13 +97,137 @@ function animateCounters() {
   });
 }
 
-// ═══════════ SKILL BARS ═══════════
-function animateSkillBars() {
-  document.querySelectorAll('.skill-bar-fill').forEach(bar => bar.classList.add('animated'));
+// ═══════════ RADAR CHART ═══════════
+const radarData = [
+    { label: 'Java', value: 0.85 },
+    { label: 'Python', value: 0.70 },
+    { label: 'SQL', value: 0.80 },
+    { label: 'Front-End', value: 0.90 },
+    { label: 'Back-End', value: 0.80 },
+    { label: 'Git/GitHub', value: 0.75 },
+    { label: 'Algorithms', value: 0.75 },
+    { label: 'System Design', value: 0.65 }
+];
+let radarDrawn = false;
+
+function drawRadarChart(progress = 1) {
+    const canvas = document.getElementById('radar-chart');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const width = canvas.width;
+    const height = canvas.height;
+    const centerX = width / 2;
+    const centerY = height / 2;
+    const radius = Math.min(width, height) / 2 - 80;
+    const sides = radarData.length;
+    const angleStep = (Math.PI * 2) / sides;
+
+    ctx.clearRect(0, 0, width, height);
+
+    // Draw web (background grid)
+    ctx.lineWidth = 1;
+    for (let level = 1; level <= 5; level++) {
+        const r = radius * (level / 5);
+        ctx.beginPath();
+        for (let i = 0; i < sides; i++) {
+            const x = centerX + r * Math.cos(i * angleStep - Math.PI / 2);
+            const y = centerY + r * Math.sin(i * angleStep - Math.PI / 2);
+            if (i === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+        }
+        ctx.closePath();
+        ctx.strokeStyle = 'rgba(0, 240, 255, 0.2)';
+        ctx.stroke();
+    }
+
+    // Draw axes & labels
+    ctx.font = 'bold 13px "Share Tech Mono", monospace';
+    ctx.textBaseline = 'middle';
+    for (let i = 0; i < sides; i++) {
+        const x = centerX + radius * Math.cos(i * angleStep - Math.PI / 2);
+        const y = centerY + radius * Math.sin(i * angleStep - Math.PI / 2);
+        
+        ctx.beginPath();
+        ctx.moveTo(centerX, centerY);
+        ctx.lineTo(x, y);
+        ctx.strokeStyle = 'rgba(0, 240, 255, 0.3)';
+        ctx.stroke();
+
+        // Draw dot at end of axis
+        ctx.beginPath();
+        ctx.arc(x, y, 3, 0, Math.PI*2);
+        ctx.fillStyle = '#00f0ff';
+        ctx.fill();
+
+        // Draw label
+        const labelX = centerX + (radius + 20) * Math.cos(i * angleStep - Math.PI / 2);
+        const labelY = centerY + (radius + 25) * Math.sin(i * angleStep - Math.PI / 2);
+        
+        // Dynamic text alignment
+        if (Math.abs(labelX - centerX) < 10) {
+            ctx.textAlign = 'center';
+        } else if (labelX < centerX) {
+            ctx.textAlign = 'right';
+        } else {
+            ctx.textAlign = 'left';
+        }
+
+        ctx.fillStyle = '#e0e0f0';
+        ctx.fillText(radarData[i].label, labelX, labelY);
+    }
+
+    // Draw data polygon
+    ctx.beginPath();
+    for (let i = 0; i < sides; i++) {
+        const val = radarData[i].value * progress;
+        const x = centerX + (radius * val) * Math.cos(i * angleStep - Math.PI / 2);
+        const y = centerY + (radius * val) * Math.sin(i * angleStep - Math.PI / 2);
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+    }
+    ctx.closePath();
+    
+    // Fill and stroke
+    ctx.fillStyle = 'rgba(255, 0, 60, 0.2)';
+    ctx.fill();
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = '#ff003c';
+    ctx.shadowBlur = 15;
+    ctx.shadowColor = '#ff003c';
+    ctx.stroke();
+    ctx.shadowBlur = 0; // reset
+    
+    // Draw data points
+    for (let i = 0; i < sides; i++) {
+        const val = radarData[i].value * progress;
+        const x = centerX + (radius * val) * Math.cos(i * angleStep - Math.PI / 2);
+        const y = centerY + (radius * val) * Math.sin(i * angleStep - Math.PI / 2);
+        ctx.beginPath();
+        ctx.arc(x, y, 4, 0, Math.PI*2);
+        ctx.fillStyle = '#ff003c';
+        ctx.fill();
+    }
+}
+
+function animateRadarChart() {
+    if (radarDrawn) return;
+    radarDrawn = true;
+    let start = null;
+    const duration = 1500;
+    
+    function step(timestamp) {
+        if (!start) start = timestamp;
+        const progress = Math.min((timestamp - start) / duration, 1);
+        // Easing out cubic
+        const easeProgress = 1 - Math.pow(1 - progress, 3);
+        drawRadarChart(easeProgress);
+        if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
 }
 
 // ═══════════ SCROLL ANIMATIONS ═══════════
-const fadeEls = document.querySelectorAll('.project-card,.section-header,.cta-content,.about-text-card,.skills-card,.timeline-item,.edu-card');
+const fadeEls = document.querySelectorAll('.cyber-project,.section-header,.cta-content,.about-text-card,.skills-card,.bounty-card,.biometric-card');
 fadeEls.forEach(el => el.classList.add('fade-up'));
 
 const observer = new IntersectionObserver((entries) => {
@@ -122,9 +246,9 @@ const heroObs = new IntersectionObserver((entries) => {
 }, { threshold: 0.3 });
 heroObs.observe(document.querySelector('.hero-stats'));
 
-// Trigger skill bars on visible
+// Trigger radar chart on visible
 const skillsObs = new IntersectionObserver((entries) => {
-  if (entries[0].isIntersecting) { animateSkillBars(); skillsObs.disconnect(); }
+  if (entries[0].isIntersecting) { animateRadarChart(); skillsObs.disconnect(); }
 }, { threshold: 0.3 });
 const skillsCard = document.querySelector('.skills-card');
 if (skillsCard) skillsObs.observe(skillsCard);
@@ -136,3 +260,112 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     if (target) { e.preventDefault(); navLinks.classList.remove('active'); target.scrollIntoView({ behavior: 'smooth' }); }
   });
 });
+
+// ═══════════ DECRYPT TEXT EFFECT ═══════════
+const decryptElements = document.querySelectorAll('.decrypt-text');
+const hexAlphabet = '0123456789ABCDEF';
+
+function scrambleText(text) {
+    let scrambled = '';
+    for (let i = 0; i < text.length; i++) {
+        if (text[i] === ' ') {
+            scrambled += ' ';
+        } else {
+            scrambled += hexAlphabet[Math.floor(Math.random() * hexAlphabet.length)];
+        }
+    }
+    return scrambled;
+}
+
+decryptElements.forEach(el => {
+    const originalText = el.getAttribute('data-original');
+    if (!originalText) return;
+    
+    // Initially scramble
+    el.textContent = scrambleText(originalText);
+    el.classList.add('scrambled');
+    
+    let isDecrypting = false;
+    let isDecrypted = false;
+    
+    el.addEventListener('mouseenter', () => {
+        if (isDecrypting || isDecrypted) return;
+        isDecrypting = true;
+        
+        let iteration = 0;
+        const interval = setInterval(() => {
+            let newText = '';
+            for (let i = 0; i < originalText.length; i++) {
+                if (i < iteration) {
+                    newText += originalText[i];
+                } else if (originalText[i] === ' ') {
+                    newText += ' ';
+                } else {
+                    // Inject occasional 0x prefix to mimic hex bytes without breaking layout completely
+                    if (Math.random() > 0.95 && i < originalText.length - 3) {
+                       newText += '0x' + hexAlphabet[Math.floor(Math.random() * 16)];
+                       i += 3; // Skip ahead to balance string length roughly
+                    } else {
+                       newText += hexAlphabet[Math.floor(Math.random() * hexAlphabet.length)];
+                    }
+                }
+            }
+            
+            el.textContent = newText;
+            iteration += 3; // Reveal 3 chars per tick
+            
+            if (iteration >= originalText.length) {
+                clearInterval(interval);
+                el.textContent = originalText;
+                el.classList.remove('scrambled');
+                isDecrypting = false;
+                isDecrypted = true;
+            }
+        }, 30);
+    });
+});
+
+// ═══════════ TERMINAL FORM SUBMISSION ═══════════
+const contactForm = document.getElementById('contact-form');
+const formStatus = document.getElementById('form-status');
+const submitBtn = document.getElementById('submit-btn');
+
+if (contactForm) {
+    contactForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        // Hide inputs and change button state
+        const inputs = contactForm.querySelectorAll('.form-group');
+        inputs.forEach(input => input.style.display = 'none');
+        submitBtn.innerHTML = 'UPLOADING_DATA... <span class="blink-cursor">_</span>';
+        
+        const data = new FormData(contactForm);
+        
+        try {
+            const response = await fetch(contactForm.action, {
+                method: 'POST',
+                body: data,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            
+            if (response.ok) {
+                submitBtn.style.display = 'none';
+                formStatus.className = 'form-status success';
+                formStatus.innerHTML = '> TRANSMISSION SUCCESSFUL.<br>> CONNECTION SEVERED.<br><br>I will get back to you shortly.';
+                contactForm.reset();
+            } else {
+                submitBtn.innerHTML = './transmit.sh <span class="blink-cursor">_</span>';
+                inputs.forEach(input => input.style.display = 'flex');
+                formStatus.className = 'form-status error';
+                formStatus.innerHTML = '> ERR: TRANSMISSION FAILED. NODE UNREACHABLE.';
+            }
+        } catch (error) {
+            submitBtn.innerHTML = './transmit.sh <span class="blink-cursor">_</span>';
+            inputs.forEach(input => input.style.display = 'flex');
+            formStatus.className = 'form-status error';
+            formStatus.innerHTML = '> ERR: FATAL NETWORK EXCEPTION.';
+        }
+    });
+}
