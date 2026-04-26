@@ -3,469 +3,610 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="SYS_BOOT: Java Full Stack Dev. Specializing in AI, Web Arch & Data Ops. CLEARANCE LEVEL: OPEN.">
-    <title>DILEEP.EXE // HACKER_PORTFOLIO</title>
+    <meta name="description" content="Dileep Kumar C - Java Full Stack Developer, AI/ML builder, and problem solver. Cyberpunk operator portfolio.">
+    <meta name="theme-color" content="#050507">
+    <title>Dileep Kumar C // Operator Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        :root{
+            --bg:#050507;
+            --panel:#0a0d12;
+            --panel-2:#111620;
+            --ink:#f4f7fb;
+            --muted:#8d99aa;
+            --cyan:#00f0ff;
+            --red:#ff003c;
+            --yellow:#fcee0a;
+            --green:#49ff9f;
+            --line:rgba(0,240,255,.24);
+            --line-soft:rgba(255,255,255,.1);
+            --shadow:0 26px 90px rgba(0,0,0,.52);
+            --font-display:"Orbitron",system-ui,sans-serif;
+            --font-body:"Rajdhani",system-ui,sans-serif;
+            --font-mono:"Share Tech Mono",monospace;
+        }
+        html{scroll-behavior:smooth;scroll-snap-type:y proximity;background:var(--bg)}
+        body{min-height:100vh;background:var(--bg);color:var(--ink);font-family:var(--font-body);line-height:1.55;overflow-x:hidden}
+        body::before{content:"";position:fixed;inset:0;z-index:-3;background:radial-gradient(circle at 12% 15%,rgba(255,0,60,.16),transparent 28%),radial-gradient(circle at 88% 18%,rgba(0,240,255,.16),transparent 26%),linear-gradient(135deg,#030305,#070812 45%,#050507);pointer-events:none}
+        body::after{content:"";position:fixed;inset:0;z-index:1000;pointer-events:none;background:linear-gradient(rgba(255,255,255,0) 50%,rgba(0,0,0,.26) 50%),linear-gradient(90deg,rgba(255,0,60,.055),rgba(0,240,255,.025),rgba(252,238,10,.045));background-size:100% 3px,4px 100%;mix-blend-mode:screen;opacity:.42}
+        a{color:inherit;text-decoration:none}
+        button,input,textarea{font:inherit}
+        img,svg,video{display:block}
+        .snap-section{scroll-snap-align:start}
+        .text-cyan{color:var(--cyan)}.text-red{color:var(--red)}.text-yellow{color:var(--yellow)}
+        .mono{font-family:var(--font-mono)}
+
+        #boot-loader{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;background:#020305;color:var(--cyan);transition:opacity .55s ease,visibility .55s ease}
+        #boot-loader.hidden{opacity:0;visibility:hidden}
+        .boot-console{width:min(560px,86vw);border:1px solid var(--line);border-left:3px solid var(--yellow);padding:28px;background:rgba(5,8,12,.92);box-shadow:0 0 60px rgba(0,240,255,.16),inset 0 0 26px rgba(0,240,255,.06);clip-path:polygon(0 0,calc(100% - 22px) 0,100% 22px,100% 100%,22px 100%,0 calc(100% - 22px))}
+        .boot-title{font-family:var(--font-display);font-size:clamp(1.5rem,5vw,2.8rem);font-weight:900;letter-spacing:.18em;color:var(--ink);text-shadow:3px 0 var(--red),-3px 0 var(--cyan);margin-bottom:18px}
+        .boot-lines{font-family:var(--font-mono);font-size:.9rem;color:var(--muted);display:grid;gap:8px}
+        .boot-bar{height:6px;margin-top:22px;background:rgba(255,255,255,.08);overflow:hidden;border:1px solid rgba(255,255,255,.1)}
+        .boot-bar span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--red),var(--yellow),var(--cyan));animation:bootFill 1.35s ease forwards}
+        @keyframes bootFill{to{width:100%}}
+
+        .cursor{position:fixed;left:0;top:0;width:26px;height:26px;z-index:1001;pointer-events:none;transform:translate(-50%,-50%);display:none}
+        .cursor::before,.cursor::after{content:"";position:absolute;background:var(--cyan);box-shadow:0 0 12px currentColor;transition:.18s ease}
+        .cursor::before{left:50%;top:0;width:1px;height:100%;transform:translateX(-50%)}
+        .cursor::after{top:50%;left:0;height:1px;width:100%;transform:translateY(-50%)}
+        .cursor.hot::before,.cursor.hot::after{background:var(--yellow)}
+        @media(pointer:fine){body,a,button,input,textarea{cursor:none}.cursor{display:block}}
+
+        .site-shell{position:relative;z-index:1}
+        .site-frame{position:fixed;inset:18px;z-index:50;pointer-events:none;border:1px solid rgba(0,240,255,.16)}
+        .site-frame span{position:absolute;width:48px;height:48px;border-color:var(--yellow)}
+        .site-frame .tl{left:-1px;top:-1px;border-top:2px solid;border-left:2px solid}
+        .site-frame .tr{right:-1px;top:-1px;border-top:2px solid;border-right:2px solid}
+        .site-frame .bl{left:-1px;bottom:-1px;border-bottom:2px solid;border-left:2px solid}
+        .site-frame .br{right:-1px;bottom:-1px;border-bottom:2px solid;border-right:2px solid}
+
+        .navbar{position:fixed;left:0;top:0;width:100%;z-index:100;padding:18px 0;transition:.28s ease}
+        .navbar.scrolled{background:rgba(5,5,7,.68);backdrop-filter:blur(18px);border-bottom:1px solid var(--line);box-shadow:0 10px 40px rgba(0,0,0,.32);padding:12px 0}
+        .nav-inner{width:min(1180px,calc(100% - 40px));margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:24px}
+        .brand{font-family:var(--font-display);font-weight:900;letter-spacing:.16em;font-size:1.05rem;color:var(--ink);text-shadow:2px 2px 0 var(--red)}
+        .brand span{color:var(--yellow);text-shadow:0 0 12px rgba(252,238,10,.7)}
+        .nav-links{display:flex;align-items:center;gap:34px;list-style:none}
+        .nav-links a{font-family:var(--font-mono);font-size:.82rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);position:relative;padding:8px 0;transition:.24s ease}
+        .nav-links a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--cyan);transform:scaleX(0);transform-origin:right;transition:transform .24s ease;box-shadow:0 0 12px var(--cyan)}
+        .nav-links a:hover,.nav-links a.active{color:var(--cyan);text-shadow:0 0 10px rgba(0,240,255,.55)}
+        .nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1);transform-origin:left}
+        .hamburger{display:none;width:44px;height:38px;border:1px solid var(--line);background:rgba(0,240,255,.05);align-items:center;justify-content:center;flex-direction:column;gap:5px;color:var(--cyan)}
+        .hamburger span{width:20px;height:2px;background:currentColor;transition:.28s ease}
+        .hamburger.active span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+        .hamburger.active span:nth-child(2){opacity:0}
+        .hamburger.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+        .hero{position:relative;min-height:100vh;display:grid;align-items:center;overflow:hidden;padding:120px 0 78px}
+        .hero-media{position:absolute;inset:0;z-index:-2}
+        .hero-media video{width:100%;height:100%;object-fit:cover;filter:contrast(1.18) saturate(1.05) brightness(.72)}
+        .hero-media::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,5,7,.94),rgba(5,5,7,.72) 44%,rgba(5,5,7,.28) 74%,rgba(5,5,7,.9)),radial-gradient(circle at 70% 48%,transparent,rgba(5,5,7,.86) 70%)}
+        .hero-media::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 2px,rgba(0,240,255,.052) 2px 4px);opacity:.65}
+        .hero-grid{position:absolute;left:0;right:0;bottom:-2%;height:42%;background-image:linear-gradient(rgba(0,240,255,.16) 1px,transparent 1px),linear-gradient(90deg,rgba(252,238,10,.14) 1px,transparent 1px);background-size:56px 32px;transform:perspective(520px) rotateX(64deg);transform-origin:bottom;opacity:.22;mask-image:linear-gradient(to top,#000,transparent)}
+        .hero-inner{width:min(1180px,calc(100% - 40px));margin:0 auto;display:grid;grid-template-columns:minmax(0,760px) 1fr;gap:44px;align-items:end}
+        .hero-kicker{display:inline-flex;gap:10px;align-items:center;width:max-content;margin-bottom:26px;padding:8px 15px;background:var(--yellow);color:#050507;font-family:var(--font-mono);font-weight:700;letter-spacing:.16em;font-size:.78rem;clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%)}
+        .hero-kicker i{width:8px;height:8px;background:#050507;animation:blink 1s steps(2) infinite}
+        @keyframes blink{50%{opacity:.25}}
+        .hero-title{font-family:var(--font-display);font-size:clamp(3.6rem,10vw,8.8rem);line-height:.88;letter-spacing:.04em;font-weight:900;text-transform:uppercase;margin-bottom:20px}
+        .glitch{position:relative;display:inline-block;color:var(--ink);text-shadow:0 0 34px rgba(0,240,255,.12)}
+        .glitch::before,.glitch::after{content:attr(data-text);position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen}
+        .glitch::before{color:var(--red);transform:translate(3px,-1px);clip-path:inset(0 0 55% 0);animation:glitchA 2.8s infinite linear alternate-reverse}
+        .glitch::after{color:var(--cyan);transform:translate(-3px,1px);clip-path:inset(48% 0 0 0);animation:glitchB 2.2s infinite linear alternate-reverse}
+        @keyframes glitchA{0%{clip-path:inset(12% 0 70% 0)}25%{clip-path:inset(62% 0 12% 0)}50%{clip-path:inset(34% 0 45% 0)}75%{clip-path:inset(8% 0 82% 0)}100%{clip-path:inset(74% 0 6% 0)}}
+        @keyframes glitchB{0%{clip-path:inset(70% 0 10% 0)}30%{clip-path:inset(8% 0 68% 0)}60%{clip-path:inset(52% 0 22% 0)}100%{clip-path:inset(18% 0 58% 0)}}
+        .hero-subtitle{display:inline-flex;align-items:center;min-height:42px;margin-bottom:34px;padding:8px 16px;border-left:3px solid var(--cyan);background:linear-gradient(90deg,rgba(0,0,0,.72),rgba(0,240,255,.08));font-family:var(--font-mono);font-size:clamp(1rem,2vw,1.38rem);color:var(--yellow);letter-spacing:.08em}
+        .caret{display:inline-block;margin-left:4px;color:var(--ink);animation:blink .8s steps(2) infinite}
+        .hero-actions{display:flex;flex-wrap:wrap;gap:16px;margin-bottom:38px}
+        .btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:11px;min-height:52px;padding:14px 22px;border:1px solid var(--line);background:rgba(0,0,0,.42);color:var(--ink);font-family:var(--font-display);font-size:.78rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;overflow:hidden;clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,14px 100%,0 calc(100% - 14px));transition:.25s ease}
+        .btn::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(0,240,255,.2),transparent);transform:translateX(-120%);transition:.35s ease}
+        .btn:hover{border-color:var(--cyan);color:var(--cyan);box-shadow:0 0 24px rgba(0,240,255,.22),inset 0 0 24px rgba(0,240,255,.08);transform:translateY(-3px)}
+        .btn:hover::before{transform:translateX(120%)}
+        .btn.primary{border-color:rgba(252,238,10,.7);color:var(--yellow)}
+        .btn.primary:hover{border-color:var(--yellow);box-shadow:0 0 26px rgba(252,238,10,.24),inset 0 0 24px rgba(252,238,10,.08)}
+        .stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;max-width:720px}
+        .stat{padding:18px 16px;border:1px solid rgba(255,255,255,.1);background:rgba(5,8,12,.62);border-top:2px solid var(--red);box-shadow:inset 0 0 24px rgba(0,0,0,.4)}
+        .stat strong{font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem);line-height:1;color:var(--ink);text-shadow:2px 2px 0 var(--red),-2px -2px 0 var(--cyan)}
+        .stat span{display:block;margin-top:8px;font-family:var(--font-mono);font-size:.73rem;letter-spacing:.15em;color:var(--cyan);text-transform:uppercase}
+        .hero-panel{align-self:stretch;display:flex;align-items:flex-end;justify-content:flex-end}
+        .system-card{width:min(340px,100%);border:1px solid var(--line);border-left:3px solid var(--yellow);padding:22px;background:rgba(5,8,12,.48);backdrop-filter:blur(10px);box-shadow:var(--shadow);clip-path:polygon(0 0,calc(100% - 20px) 0,100% 20px,100% 100%,20px 100%,0 calc(100% - 20px))}
+        .system-card h2{font-family:var(--font-mono);font-size:.78rem;letter-spacing:.18em;color:var(--yellow);margin-bottom:18px}
+        .system-row{display:flex;justify-content:space-between;border-bottom:1px dashed rgba(255,255,255,.14);padding:10px 0;font-family:var(--font-mono);font-size:.78rem;color:var(--muted)}
+        .system-row span:last-child{color:var(--cyan)}
+
+        .section{position:relative;padding:120px 0}
+        .container{width:min(1180px,calc(100% - 40px));margin:0 auto}
+        .section-head{margin-bottom:54px}
+        .section-tag{display:inline-flex;margin-bottom:13px;font-family:var(--font-mono);font-size:.78rem;letter-spacing:.2em;color:#050507;background:var(--yellow);padding:4px 10px;clip-path:polygon(0 0,100% 0,calc(100% - 8px) 100%,0 100%)}
+        .section-title{font-family:var(--font-display);font-size:clamp(2.1rem,5vw,4rem);line-height:1.05;text-transform:uppercase;letter-spacing:.06em}
+        .section-title span{color:transparent;-webkit-text-stroke:1px var(--cyan);text-shadow:4px 4px 0 rgba(255,0,60,.32)}
+        .reveal{opacity:0;transform:translateY(34px);transition:opacity .78s cubic-bezier(.2,.9,.2,1),transform .78s cubic-bezier(.2,.9,.2,1)}
+        .reveal.visible{opacity:1;transform:translateY(0)}
+
+        .about{background:linear-gradient(180deg,rgba(5,5,7,0),rgba(0,240,255,.035),rgba(5,5,7,0))}
+        .about::before{content:"";position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='84' viewBox='0 0 96 84'%3E%3Cg fill='none' stroke='%2300f0ff' stroke-opacity='.16' stroke-width='1'%3E%3Cpath d='M24 1 48 14.5v27L24 55 0 41.5v-27L24 1Z'/%3E%3Cpath d='M72 1 96 14.5v27L72 55 48 41.5v-27L72 1Z'/%3E%3Cpath d='M48 42 72 55.5v27L48 96 24 82.5v-27L48 42Z'/%3E%3C/g%3E%3C/svg%3E");opacity:.36;mask-image:radial-gradient(circle at 50% 50%,#000,transparent 76%);pointer-events:none}
+        .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:stretch}
+        .panel{position:relative;border:1px solid var(--line);background:linear-gradient(145deg,rgba(9,13,19,.9),rgba(5,5,7,.72));padding:32px;box-shadow:var(--shadow);clip-path:polygon(0 0,calc(100% - 24px) 0,100% 24px,100% 100%,24px 100%,0 calc(100% - 24px));overflow:hidden}
+        .panel::before{content:"";position:absolute;left:18px;right:18px;top:16px;height:1px;background:linear-gradient(90deg,var(--cyan),transparent,var(--red));opacity:.55}
+        .profile-table{display:grid;gap:13px;margin:24px 0}
+        .profile-row{display:grid;grid-template-columns:120px 1fr;gap:18px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+        .profile-row b{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.16em;color:var(--muted)}
+        .profile-row span{font-family:var(--font-mono);color:var(--ink)}
+        .about-copy{color:#c7d0dd;font-size:1.08rem}
+        .socials{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+        .icon-link{width:48px;height:48px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);color:var(--muted);transition:.24s ease;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px))}
+        .icon-link:hover{color:var(--cyan);border-color:var(--cyan);box-shadow:0 0 22px rgba(0,240,255,.22);transform:translateY(-3px)}
+        .skills-panel h3{font-family:var(--font-display);font-size:1rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:26px;color:var(--yellow)}
+        .skill{margin-bottom:22px}
+        .skill-top{display:flex;justify-content:space-between;margin-bottom:9px;font-family:var(--font-mono);font-size:.82rem;letter-spacing:.12em;color:var(--muted)}
+        .skill-track{height:9px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);overflow:hidden}
+        .skill-fill{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--red),var(--yellow),var(--cyan));box-shadow:0 0 18px rgba(0,240,255,.45);transition:width 1.3s cubic-bezier(.2,.9,.2,1)}
+
+        .project-toolbar{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:30px}
+        .filter-btn{min-width:88px;padding:10px 14px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);color:var(--muted);font-family:var(--font-mono);letter-spacing:.16em;font-size:.74rem;transition:.22s ease}
+        .filter-btn:hover,.filter-btn.active{color:#050507;background:var(--cyan);border-color:var(--cyan);box-shadow:0 0 20px rgba(0,240,255,.25)}
+        .projects-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+        .project-card{position:relative;min-height:440px;border:1px solid rgba(0,240,255,.18);background:rgba(9,13,19,.76);overflow:hidden;box-shadow:var(--shadow);transition:.28s ease;clip-path:polygon(0 0,calc(100% - 24px) 0,100% 24px,100% 100%,24px 100%,0 calc(100% - 24px))}
+        .project-card.hide{display:none}
+        .project-card:hover{transform:translateY(-8px);border-color:var(--cyan);box-shadow:0 0 34px rgba(0,240,255,.18),var(--shadow)}
+        .project-visual{position:relative;height:230px;overflow:hidden;background:#0d1118}
+        .project-visual img{width:100%;height:100%;object-fit:cover;filter:saturate(.75) contrast(1.12) brightness(.78);transition:.38s ease}
+        .project-card:hover .project-visual img{filter:saturate(1.05) contrast(1.05) brightness(1);transform:scale(1.04)}
+        .project-visual::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 2px,rgba(0,0,0,.28) 2px 4px),linear-gradient(180deg,transparent,rgba(5,5,7,.76));pointer-events:none}
+        .project-fallback{position:absolute;inset:0;display:grid;place-items:center;background:radial-gradient(circle at 50% 45%,rgba(0,240,255,.2),transparent 38%),linear-gradient(135deg,#0a0c11,#18040b)}
+        .riddle-mark{font-family:var(--font-display);font-size:clamp(1.6rem,4vw,3rem);letter-spacing:.14em;text-align:center;text-transform:uppercase;color:var(--ink);text-shadow:3px 0 var(--red),-3px 0 var(--cyan)}
+        .project-content{padding:24px}
+        .project-meta{display:flex;justify-content:space-between;gap:12px;margin-bottom:12px;font-family:var(--font-mono);font-size:.72rem;letter-spacing:.16em;color:var(--cyan)}
+        .project-card h3{font-family:var(--font-display);font-size:1.35rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px}
+        .project-card p{color:#b8c2d1;margin-bottom:18px}
+        .chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+        .chip{padding:5px 8px;background:rgba(255,255,255,.08);font-family:var(--font-mono);font-size:.68rem;letter-spacing:.12em;color:var(--ink)}
+        .project-actions{display:flex;gap:10px;flex-wrap:wrap;opacity:.15;transform:translateY(12px);transition:.26s ease}
+        .project-card:hover .project-actions{opacity:1;transform:translateY(0)}
+        .launch{padding:9px 13px;border:1px solid var(--cyan);color:var(--cyan);font-family:var(--font-mono);font-size:.72rem;letter-spacing:.16em;transition:.22s ease}
+        .launch:hover{background:var(--cyan);color:#050507;box-shadow:0 0 18px rgba(0,240,255,.28)}
+
+        .timeline{position:relative;max-width:880px;margin:0 auto;padding-left:34px}
+        .timeline::before{content:"";position:absolute;left:8px;top:0;bottom:0;width:2px;background:linear-gradient(var(--cyan),var(--red),var(--yellow));transform:scaleY(0);transform-origin:top;transition:transform 1.1s ease}
+        .timeline.visible::before{transform:scaleY(1)}
+        .timeline-item{position:relative;margin-bottom:28px;padding:24px;border:1px solid rgba(255,255,255,.13);background:rgba(9,13,19,.74);clip-path:polygon(0 0,calc(100% - 18px) 0,100% 18px,100% 100%,18px 100%,0 calc(100% - 18px))}
+        .timeline-item::before{content:"";position:absolute;left:-33px;top:28px;width:15px;height:15px;background:var(--yellow);box-shadow:0 0 18px rgba(252,238,10,.6);transform:rotate(45deg)}
+        .timeline-date{font-family:var(--font-mono);color:var(--cyan);letter-spacing:.16em;font-size:.76rem;margin-bottom:9px}
+        .timeline-item h3{font-family:var(--font-display);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
+        .timeline-item p{color:#bdc7d6}
+
+        .contact{background:linear-gradient(180deg,rgba(5,5,7,0),rgba(255,0,60,.04))}
+        .contact-grid{display:grid;grid-template-columns:1fr .72fr;gap:30px;align-items:start}
+        .terminal{border:1px solid rgba(0,240,255,.24);background:#06090d;box-shadow:var(--shadow);overflow:hidden}
+        .term-top{height:32px;background:#161b22;display:flex;align-items:center;gap:8px;padding:0 14px;color:var(--muted);font-family:var(--font-mono);font-size:.75rem}
+        .dot{width:10px;height:10px;border-radius:50%}.dot.r{background:#ff5f57}.dot.y{background:#ffbd2e}.dot.g{background:#28c840}
+        .terminal form{padding:28px;display:grid;gap:18px}
+        .field label{display:block;font-family:var(--font-mono);font-size:.82rem;letter-spacing:.1em;color:var(--muted);margin-bottom:7px}
+        .field input,.field textarea{width:100%;border:0;border-bottom:1px dashed rgba(255,255,255,.22);background:transparent;color:var(--cyan);outline:0;padding:10px 0;caret-color:var(--yellow)}
+        .field input:focus,.field textarea:focus{border-color:var(--cyan);box-shadow:0 10px 18px -18px var(--cyan)}
+        .field textarea{min-height:110px;resize:vertical}
+        .form-status{font-family:var(--font-mono);font-size:.86rem;color:var(--muted);min-height:24px}
+        .direct-card{display:grid;gap:14px}
+        .direct-card .panel{padding:24px}
+        .direct-link{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);font-family:var(--font-mono);letter-spacing:.12em;color:var(--muted);transition:.22s ease}
+        .direct-link:hover{color:var(--yellow);border-color:var(--yellow);box-shadow:0 0 20px rgba(252,238,10,.18);transform:translateX(4px)}
+        .footer{padding:34px 0;border-top:1px solid rgba(255,255,255,.1);background:rgba(5,5,7,.9)}
+        .footer-inner{width:min(1180px,calc(100% - 40px));margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:18px;font-family:var(--font-mono);font-size:.82rem;color:var(--muted);letter-spacing:.12em}
+
+        @media(max-width:980px){
+            html{scroll-snap-type:none}
+            .hero-inner,.about-grid,.contact-grid{grid-template-columns:1fr}
+            .hero-panel{display:none}
+            .projects-grid{grid-template-columns:1fr}
+            .nav-links{position:fixed;right:0;top:0;height:100vh;width:min(360px,82vw);padding:96px 28px 28px;background:rgba(5,5,7,.92);backdrop-filter:blur(20px);border-left:1px solid var(--line);display:flex;flex-direction:column;align-items:flex-start;gap:22px;transform:translateX(105%);transition:transform .32s ease;box-shadow:-30px 0 80px rgba(0,0,0,.48)}
+            .nav-links.open{transform:translateX(0)}
+            .hamburger{display:flex;position:relative;z-index:101}
+            .stats{grid-template-columns:1fr}
+        }
+        @media(max-width:640px){
+            .site-frame{display:none}
+            .hero{padding-top:106px}
+            .hero-inner,.container,.nav-inner,.footer-inner{width:min(100% - 28px,1180px)}
+            .hero-title{font-size:clamp(3rem,17vw,4.9rem)}
+            .hero-actions{display:grid}
+            .btn{width:100%}
+            .section{padding:86px 0}
+            .panel,.project-content{padding:22px}
+            .profile-row{grid-template-columns:1fr;gap:4px}
+            .project-actions{opacity:1;transform:none}
+            .project-visual{height:200px}
+            .footer-inner{flex-direction:column;text-align:center}
+        }
+        @media(prefers-reduced-motion:reduce){
+            *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
+            #boot-loader{display:none}
+        }
+    </style>
 </head>
 <body>
-    <!-- PARTICLES CANVAS -->
-    <canvas id="particles-canvas"></canvas>
-    <div class="cursor-aura" id="cursor-aura" aria-hidden="true"></div>
-    <div class="site-frame" aria-hidden="true">
-        <span class="frame-corner frame-tl"></span>
-        <span class="frame-corner frame-tr"></span>
-        <span class="frame-corner frame-bl"></span>
-        <span class="frame-corner frame-br"></span>
+    <div id="boot-loader" aria-hidden="true">
+        <div class="boot-console">
+            <div class="boot-title">SYSTEM BOOT</div>
+            <div class="boot-lines">
+                <span>&gt; loading operator dossier...</span>
+                <span>&gt; linking project nodes...</span>
+                <span>&gt; access granted: DILEEP_KUMAR_C</span>
+            </div>
+            <div class="boot-bar"><span></span></div>
+        </div>
     </div>
 
-    <nav id="navbar" class="navbar">
-        <div class="nav-container">
-            <a href="#" class="nav-logo" id="nav-logo">
-                <span class="logo-text">DILEEP</span><span class="logo-accent">.</span>
-            </a>
-            <ul class="nav-links" id="nav-links">
-                <li><a href="#about">./about</a></li>
-                <li><a href="#projects">./projects</a></li>
-                <li><a href="#experience">./contracts</a></li>
-                <li><a href="#contact">./contact</a></li>
-            </ul>
-            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
-                <span></span><span></span><span></span>
-            </button>
-        </div>
-    </nav>
+    <div class="cursor" id="cursor" aria-hidden="true"></div>
+    <div class="site-frame" aria-hidden="true"><span class="tl"></span><span class="tr"></span><span class="bl"></span><span class="br"></span></div>
 
-    <!-- HERO -->
-    <section id="hero" class="hero">
-        <div class="hero-video-wrap">
-            <video autoplay muted loop playsinline id="hero-video" class="hero-video">
-                <source src="assests/Intro.mp4" type="video/mp4">
-            </video>
-            <div class="hero-overlay"></div>
-            <div class="hero-scanlines"></div>
-            <div class="hero-grid"></div>
-        </div>
-        <div class="hero-content">
-            <div class="hero-badge">
-                <span class="badge-dot"></span>
-                <span>OPEN TO OPPORTUNITIES</span>
+    <div class="site-shell">
+        <nav class="navbar" id="navbar">
+            <div class="nav-inner">
+                <a class="brand" href="#hero">DILEEP<span>.</span>EXE</a>
+                <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#about">./about</a></li>
+                    <li><a href="#projects">./projects</a></li>
+                    <li><a href="#experience">./experience</a></li>
+                    <li><a href="#contact">./contact</a></li>
+                </ul>
             </div>
-            <h1 class="hero-title" id="hero-title">
-                <span class="glitch" data-text="DILEEP">DILEEP</span><br>
-                <span class="glitch hero-title-sub" data-text="KUMAR C">KUMAR C</span>
-            </h1>
-            <p class="hero-subtitle">
-                <span class="typing-text" id="typing-text"></span><span class="typing-cursor">|</span>
-            </p>
-            <div class="hero-cta-group">
-                <a href="#projects" class="btn btn-primary" id="cta-projects">
-                    <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-                    DECRYPT_FILES.sh
-                </a>
-                <a href="mailto:dileepkmrc@gmail.com" class="btn btn-outline" id="cta-contact-hero">
-                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                    OPEN_CHANNEL
-                </a>
-            </div>
-            <div class="hero-stats">
-                <div class="hero-stat">
-                    <span class="hero-stat-num" data-target="3">0</span><span class="hero-stat-plus">+</span>
-                    <span class="hero-stat-label">ACTIVE_NODES</span>
-                </div>
-                <div class="hero-stat">
-                    <span class="hero-stat-num" data-target="2">0</span><span class="hero-stat-plus">+</span>
-                    <span class="hero-stat-label">CONTRACTS</span>
-                </div>
-                <div class="hero-stat">
-                    <span class="hero-stat-num" data-target="92">0</span><span class="hero-stat-plus">%</span>
-                    <span class="hero-stat-label">CNN_PRECISION</span>
-                </div>
-            </div>
-            <div class="hero-command-strip">
-                <span>BUILD: JAVA_FULL_STACK</span>
-                <span>MODE: REMOTE_READY</span>
-                <span>COMMS: OPEN</span>
-            </div>
-        </div>
-        <div class="scroll-indicator" id="scroll-indicator">
-            <span>[ INIT ]</span>
-            <div class="scroll-line"></div>
-        </div>
-    </section>
+        </nav>
 
-    <!-- ABOUT + SKILLS -->
-    <section id="about" class="about-section">
-        <div class="section-container">
-            <div class="section-header">
-                <span class="section-tag">[SYS] OPERATOR DOSSIER</span>
-                <h2 class="section-title">Subject <span class="text-gradient">Profile</span></h2>
+        <header class="hero snap-section" id="hero">
+            <div class="hero-media" aria-hidden="true">
+                <video autoplay muted loop playsinline>
+                    <source src="assests/Intro.mp4" type="video/mp4">
+                </video>
+                <div class="hero-grid"></div>
             </div>
-            <div class="about-grid">
-                <div class="about-text-card cyber-profile">
-                    <div class="profile-header">
-                        <span class="profile-id">SUBJECT // 0xDILEEP</span>
-                        <span class="profile-status highlight-cyan">[ ONLINE ]</span>
+            <div class="hero-inner">
+                <div class="hero-copy reveal">
+                    <div class="hero-kicker"><i></i> OPEN TO OPPORTUNITIES</div>
+                    <h1 class="hero-title">
+                        <span class="glitch" data-text="DILEEP">DILEEP</span><br>
+                        <span class="glitch" data-text="KUMAR C">KUMAR C</span>
+                    </h1>
+                    <p class="hero-subtitle"><span id="typewriter"></span><span class="caret">|</span></p>
+                    <div class="hero-actions">
+                        <button class="btn primary" id="resumeBtn" type="button">DOWNLOAD RESUME</button>
+                        <a class="btn" href="#projects">VIEW PROJECTS</a>
                     </div>
-                    <div class="profile-data">
-                        <div class="data-row">
-                            <span class="data-label">CLASS:</span>
-                            <span class="data-value highlight-yellow">Java Full Stack Dev</span>
-                        </div>
-                        <div class="data-row">
-                            <span class="data-label">BASE:</span>
-                            <span class="data-value">Malnad College of Engineering</span>
-                        </div>
-                        <div class="data-row">
-                            <span class="data-label">CORE:</span>
-                            <span class="data-value highlight-magenta">Java, Spring Boot, SQL</span>
-                        </div>
-                        <div class="data-row">
-                            <span class="data-label">DIRECTIVE:</span>
-                            <span class="data-value highlight-cyan">Solving problems via clean code</span>
-                        </div>
-                    </div>
-                    <p class="about-text decrypt-text" data-original="Information Science graduate (70% aggregate). Strong foundation in HTML and CSS with experience building responsive and user-friendly web pages. Passionate about logical thinking and continuous system upgrades.">Information Science graduate (70% aggregate). Strong foundation in HTML and CSS with experience building responsive and user-friendly web pages. Passionate about logical thinking and continuous system upgrades.</p>
-                    <div class="profile-metrics">
-                        <div class="profile-metric">
-                            <span class="metric-value">03</span>
-                            <span class="metric-label">PROJECT_NODES</span>
-                        </div>
-                        <div class="profile-metric">
-                            <span class="metric-value">02</span>
-                            <span class="metric-label">FIELD_OPS</span>
-                        </div>
-                        <div class="profile-metric">
-                            <span class="metric-value">70%</span>
-                            <span class="metric-label">ACADEMIC_SYNC</span>
-                        </div>
+                    <div class="stats" id="stats">
+                        <div class="stat"><strong data-count="3" data-suffix="+">0</strong><span>Projects</span></div>
+                        <div class="stat"><strong data-count="1">0</strong><span>Internship</span></div>
+                        <div class="stat"><strong data-count="92" data-suffix="%">0</strong><span>CNN Accuracy</span></div>
                     </div>
                 </div>
-                <div class="skills-card">
-                    <div class="card-corner card-corner-tl"></div>
-                    <div class="card-corner card-corner-br"></div>
-                    <h3 class="skills-heading">// EXPERTISE MATRIX</h3>
-                    <div class="radar-container">
-                        <canvas id="radar-chart" width="600" height="600"></canvas>
+                <aside class="hero-panel reveal" aria-label="Operator status">
+                    <div class="system-card">
+                        <h2>OPERATOR_INTERFACE</h2>
+                        <div class="system-row"><span>CLASS</span><span>JAVA_FULL_STACK</span></div>
+                        <div class="system-row"><span>MODE</span><span>AI/ML_BUILD</span></div>
+                        <div class="system-row"><span>STATUS</span><span>AVAILABLE</span></div>
+                        <div class="system-row"><span>LOCATION</span><span>INDIA</span></div>
                     </div>
-                    <div class="skill-clusters">
-                        <div class="skill-cluster">
-                            <span class="cluster-label">UI_LAYER</span>
-                            <div class="skill-tags">
-                                <span class="skill-tag-sm">HTML5</span>
-                                <span class="skill-tag-sm">CSS3</span>
-                                <span class="skill-tag-sm">JavaScript</span>
-                                <span class="skill-tag-sm">Bootstrap</span>
+                </aside>
+            </div>
+        </header>
+
+        <main>
+            <section class="section about snap-section" id="about">
+                <div class="container">
+                    <div class="section-head reveal">
+                        <span class="section-tag">[SYS] SUBJECT PROFILE</span>
+                        <h2 class="section-title">Operator <span>Dossier</span></h2>
+                    </div>
+                    <div class="about-grid">
+                        <article class="panel reveal">
+                            <h3 class="mono text-yellow">SUBJECT_PROFILE</h3>
+                            <div class="profile-table">
+                                <div class="profile-row"><b>NAME</b><span>Dileep Kumar C</span></div>
+                                <div class="profile-row"><b>ROLE</b><span>Java Full Stack Developer</span></div>
+                                <div class="profile-row"><b>BASE</b><span>Malnad College of Engineering</span></div>
+                                <div class="profile-row"><b>FOCUS</b><span>Spring Boot, SQL, AI/ML, responsive web systems</span></div>
                             </div>
-                        </div>
-                        <div class="skill-cluster">
-                            <span class="cluster-label">API_CORE</span>
-                            <div class="skill-tags">
-                                <span class="skill-tag-sm">Java</span>
-                                <span class="skill-tag-sm">Spring Boot</span>
-                                <span class="skill-tag-sm">JUnit 5</span>
+                            <p class="about-copy">Information Science graduate with a practical build-first mindset. I design clean interfaces, ship useful applications, and keep improving the system until the experience feels sharp, fast, and human.</p>
+                            <div class="socials" aria-label="Social links">
+                                <a class="icon-link" href="https://github.com/Dileep-kumarc" target="_blank" rel="noreferrer" aria-label="GitHub">
+                                    <svg width="21" height="21" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.2.8-.6v-2c-3.3.7-4-1.4-4-1.4-.5-1.3-1.2-1.7-1.2-1.7-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 1.7 2.7 1.2 3.4.9.1-.7.4-1.2.7-1.5-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.8 18.3 5 18.3 5c.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6A12 12 0 0 0 12 .3Z"/></svg>
+                                </a>
+                                <a class="icon-link" href="https://www.linkedin.com/in/dileepkumar-java/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+                                    <svg width="21" height="21" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33 0-3.04-1.85-3.04s-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12Zm1.78 13.02H3.56V9h3.56v11.45ZM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.2 0 22.23 0Z"/></svg>
+                                </a>
+                                <a class="icon-link" href="mailto:dileepkmrc@gmail.com" aria-label="Email">
+                                    <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="m4 7 8 6 8-6"/></svg>
+                                </a>
                             </div>
-                        </div>
-                        <div class="skill-cluster">
-                            <span class="cluster-label">DATA_GRID</span>
-                            <div class="skill-tags">
-                                <span class="skill-tag-sm">SQL</span>
-                                <span class="skill-tag-sm">MySQL</span>
-                                <span class="skill-tag-sm">Python</span>
-                            </div>
-                        </div>
-                        <div class="skill-cluster">
-                            <span class="cluster-label">DEPLOY_NODE</span>
-                            <div class="skill-tags">
-                                <span class="skill-tag-sm">GitHub</span>
-                                <span class="skill-tag-sm">Vercel</span>
-                                <span class="skill-tag-sm">Railway</span>
-                                <span class="skill-tag-sm">Hostinger</span>
-                            </div>
-                        </div>
+                        </article>
+                        <article class="panel skills-panel reveal" id="skillsPanel">
+                            <h3>Skill Bars</h3>
+                            <div class="skill"><div class="skill-top"><span>Java</span><span>85%</span></div><div class="skill-track"><span class="skill-fill" data-width="85%"></span></div></div>
+                            <div class="skill"><div class="skill-top"><span>Python</span><span>70%</span></div><div class="skill-track"><span class="skill-fill" data-width="70%"></span></div></div>
+                            <div class="skill"><div class="skill-top"><span>SQL</span><span>75%</span></div><div class="skill-track"><span class="skill-fill" data-width="75%"></span></div></div>
+                            <div class="skill"><div class="skill-top"><span>HTML/CSS</span><span>90%</span></div><div class="skill-track"><span class="skill-fill" data-width="90%"></span></div></div>
+                        </article>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
+            </section>
 
-    <!-- PROJECTS -->
-    <section id="projects" class="projects-section">
-        <div class="section-container">
-            <div class="section-header">
-                <span class="section-tag">[OP] INTEL ARCHIVE</span>
-                <h2 class="section-title">Active <span class="text-gradient">Databank</span></h2>
-            </div>
-            <div class="cyber-projects-grid">
-                
-                <!-- PROJECT 01 -->
-                <article class="cyber-project">
-                    <span class="project-index">P-01</span>
-                    <div class="cyber-project-image">
-                        <img src="assests/project1.png" alt="College Notes Gallery" class="project-img">
-                        <div class="image-scanline"></div>
-                        <div class="image-corner top-left"></div>
-                        <div class="image-corner bottom-right"></div>
-                        <span class="project-hud-badge">WEB_APP // SECURE</span>
+            <section class="section projects snap-section" id="projects">
+                <div class="container">
+                    <div class="section-head reveal">
+                        <span class="section-tag">[OP] PROJECT ARCHIVE</span>
+                        <h2 class="section-title">Launch <span>Nodes</span></h2>
                     </div>
-                    <div class="cyber-project-data">
-                        <div class="data-header">
-                            <time class="data-date">[ 05.2024 - 07.2024 ]</time>
-                            <h3 class="data-title">College Notes Gallery</h3>
-                        </div>
-                        <p class="data-desc">Secure web application engineered for the seamless distribution of academic resources. Features encrypted authentication protocols and strict role-based access control modules.</p>
-                        <div class="data-tech">
-                            <span class="tech-node">PHP</span><span class="tech-node">MySQL</span><span class="tech-node">Bootstrap</span><span class="tech-node">JS</span>
-                        </div>
-                        <div class="project-readouts">
-                            <span>AUTH_LOCK</span>
-                            <span>ROLE_ACCESS</span>
-                            <span>RESOURCE_HUB</span>
-                        </div>
-                        <div class="data-actions">
-                            <a href="https://github.com/Dileep-kumarc/college-notes-gallery-" target="_blank" class="cyber-action-btn">
-                                ACCESS_REPO <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57"/></svg>
-                            </a>
-                        </div>
+                    <div class="project-toolbar reveal" aria-label="Project filters">
+                        <button class="filter-btn active" data-filter="all">ALL</button>
+                        <button class="filter-btn" data-filter="web">WEB</button>
+                        <button class="filter-btn" data-filter="ai">AI/ML</button>
+                        <button class="filter-btn" data-filter="utility">UTILITY</button>
                     </div>
-                </article>
-
-                <!-- PROJECT 02 -->
-                <article class="cyber-project reverse">
-                    <span class="project-index">P-02</span>
-                    <div class="cyber-project-image">
-                        <img src="assests/project2.png" alt="Brain Tumor Detection" class="project-img">
-                        <div class="image-scanline"></div>
-                        <div class="image-corner top-left"></div>
-                        <div class="image-corner bottom-right"></div>
-                        <span class="project-hud-badge">AI // MACHINE_LEARNING</span>
-                    </div>
-                    <div class="cyber-project-data">
-                        <div class="data-header">
-                            <time class="data-date">[ 11.2024 - 02.2025 ]</time>
-                            <h3 class="data-title">Brain Tumor Detection</h3>
-                        </div>
-                        <p class="data-desc">Advanced Convolutional Neural Network (CNN) algorithm trained to classify MRI anomalies. Achieved 92% diagnostic accuracy. Interface powered by a real-time Streamlit HUD.</p>
-                        <div class="data-tech">
-                            <span class="tech-node">Python</span><span class="tech-node">TensorFlow</span><span class="tech-node">OpenCV</span><span class="tech-node">Streamlit</span>
-                        </div>
-                        <div class="project-readouts">
-                            <span>CNN_MODEL</span>
-                            <span>92%_ACCURACY</span>
-                            <span>MRI_CLASSIFIER</span>
-                        </div>
-                        <div class="data-actions">
-                            <a href="https://github.com/Dileep-kumarc/Brain-Tumor-Detection-using-CNN" target="_blank" class="cyber-action-btn">
-                                ACCESS_REPO <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57"/></svg>
-                            </a>
-                            <a href="https://brain-tumor-detection-using-cnngit-4m636jmgyuujqg64sjyzej.streamlit.app/" target="_blank" class="cyber-action-btn highlight">
-                                RUN_STREAMLIT <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7z"/></svg>
-                            </a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- PROJECT 03 -->
-                <article class="cyber-project">
-                    <span class="project-index">P-03</span>
-                    <div class="cyber-project-image">
-                        <img src="assests/project3.png" alt="Free Online Calculators" class="project-img">
-                        <div class="image-scanline"></div>
-                        <div class="image-corner top-left"></div>
-                        <div class="image-corner bottom-right"></div>
-                        <span class="project-hud-badge">UTILITY // WEB_NODE</span>
-                    </div>
-                    <div class="cyber-project-data">
-                        <div class="data-header">
-                            <time class="data-date">[ 01.2025 - 03.2025 ]</time>
-                            <h3 class="data-title">MultiCalc Utility</h3>
-                        </div>
-                        <p class="data-desc">High-performance, SEO-optimized computational hub. Actively serving 100+ concurrent users with financial, age, and compound interest algorithms. Mobile-responsive architecture.</p>
-                        <div class="data-tech">
-                            <span class="tech-node">HTML</span><span class="tech-node">CSS</span><span class="tech-node">JS</span><span class="tech-node">Bootstrap</span>
-                        </div>
-                        <div class="project-readouts">
-                            <span>SEO_READY</span>
-                            <span>100+_USERS</span>
-                            <span>MOBILE_SYNC</span>
-                        </div>
-                        <div class="data-actions">
-                            <a href="https://dileep-kumarc.github.io/Multicalc/" target="_blank" class="cyber-action-btn highlight">
-                                INITIATE_LINK <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3m-2 16H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7z"/></svg>
-                            </a>
-                            <a href="https://github.com/Dileep-kumarc/Multicalc" target="_blank" class="cyber-action-btn">
-                                ACCESS_REPO <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57"/></svg>
-                            </a>
-                        </div>
-                    </div>
-                </article>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- EXPERIENCE -->
-    <section id="experience" class="experience-section">
-        <div class="section-container">
-            <div class="section-header">
-                <span class="section-tag">&lt;/&gt; CORPORATE CONTRACTS</span>
-                <h2 class="section-title">Active <span class="text-gradient">Bounty Board</span></h2>
-            </div>
-            <div class="bounty-board-grid">
-                <!-- Contract 1: TAP Academy -->
-                <div class="bounty-card">
-                    <div class="card-corner card-corner-tl"></div>
-                    <div class="card-corner card-corner-br"></div>
-                    <div class="bounty-header">
-                        <span class="bounty-year">[ 2025 ]</span>
-                        <span class="bounty-status status-complete">STATUS: COMPLETE</span>
-                    </div>
-                    <h3 class="bounty-code glitch-hover" data-text="OP: TAP_ACADEMY">OP: TAP_ACADEMY</h3>
-                    <div class="bounty-debrief">
-                        <h4 class="debrief-title">MISSION DEBRIEF //</h4>
-                        <ul class="debrief-list">
-                            <li>Built full stack apps with Java, Spring Framework, HTML, CSS, JS</li>
-                            <li>Practiced Git & GitHub — branching, PRs, collaborative workflows</li>
-                            <li>Wrote optimized MySQL queries & database design</li>
-                        </ul>
+                    <div class="projects-grid">
+                        <article class="project-card reveal" data-category="web">
+                            <div class="project-visual"><img src="assests/project1.png" alt="College Notes Gallery screenshot"></div>
+                            <div class="project-content">
+                                <div class="project-meta"><span>WEB</span><span>2024</span></div>
+                                <h3>College Notes Gallery</h3>
+                                <p>Secure academic resource hub with authentication, role-based access, and clean student workflows.</p>
+                                <div class="chips"><span class="chip">PHP</span><span class="chip">MySQL</span><span class="chip">Bootstrap</span><span class="chip">JS</span></div>
+                                <div class="project-actions"><a class="launch" href="https://github.com/Dileep-kumarc/college-notes-gallery-" target="_blank" rel="noreferrer">LAUNCH REPO</a></div>
+                            </div>
+                        </article>
+                        <article class="project-card reveal" data-category="ai">
+                            <div class="project-visual"><img src="assests/project2.png" alt="Brain Tumor Detection screenshot"></div>
+                            <div class="project-content">
+                                <div class="project-meta"><span>AI/ML</span><span>92%</span></div>
+                                <h3>Brain Tumor Detection</h3>
+                                <p>CNN-powered MRI classifier with Streamlit deployment and diagnostic-style prediction interface.</p>
+                                <div class="chips"><span class="chip">Python</span><span class="chip">TensorFlow</span><span class="chip">OpenCV</span><span class="chip">Streamlit</span></div>
+                                <div class="project-actions"><a class="launch" href="https://brain-tumor-detection-using-cnngit-4m636jmgyuujqg64sjyzej.streamlit.app/" target="_blank" rel="noreferrer">LAUNCH DEMO</a><a class="launch" href="https://github.com/Dileep-kumarc/Brain-Tumor-Detection-using-CNN" target="_blank" rel="noreferrer">REPO</a></div>
+                            </div>
+                        </article>
+                        <article class="project-card reveal" data-category="utility">
+                            <div class="project-visual"><img src="assests/project3.png" alt="MultiCalc Utility screenshot"></div>
+                            <div class="project-content">
+                                <div class="project-meta"><span>UTILITY</span><span>LIVE</span></div>
+                                <h3>MultiCalc Utility</h3>
+                                <p>Responsive calculator suite for financial, age, and compound-interest workflows.</p>
+                                <div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span><span class="chip">Bootstrap</span></div>
+                                <div class="project-actions"><a class="launch" href="https://dileep-kumarc.github.io/Multicalc/" target="_blank" rel="noreferrer">LAUNCH DEMO</a><a class="launch" href="https://github.com/Dileep-kumarc/Multicalc" target="_blank" rel="noreferrer">REPO</a></div>
+                            </div>
+                        </article>
+                        <article class="project-card reveal" data-category="ai">
+                            <div class="project-visual">
+                                <div class="project-fallback"><div class="riddle-mark">AI<br>Riddle<br>Battle</div></div>
+                            </div>
+                            <div class="project-content">
+                                <div class="project-meta"><span>AI/ML</span><span>BUILD</span></div>
+                                <h3>AI Riddle Battle</h3>
+                                <p>Competitive riddle experience powered by Gemini API prompts, React state flows, and fast game feedback.</p>
+                                <div class="chips"><span class="chip">React</span><span class="chip">Gemini API</span><span class="chip">Game UI</span><span class="chip">AI</span></div>
+                                <div class="project-actions"><a class="launch" href="#contact">LAUNCH BRIEFING</a></div>
+                            </div>
+                        </article>
                     </div>
                 </div>
+            </section>
 
-                <!-- Contract 2: Web Intern -->
-                <div class="bounty-card">
-                    <div class="card-corner card-corner-tl"></div>
-                    <div class="card-corner card-corner-br"></div>
-                    <div class="bounty-header">
-                        <span class="bounty-year">[ 2022 ]</span>
-                        <span class="bounty-status status-archived">STATUS: ARCHIVED</span>
+            <section class="section experience snap-section" id="experience">
+                <div class="container">
+                    <div class="section-head reveal">
+                        <span class="section-tag">[EXP] FIELD LOG</span>
+                        <h2 class="section-title">Operator <span>Timeline</span></h2>
                     </div>
-                    <h3 class="bounty-code glitch-hover" data-text="OP: WEB_DEV_INIT">OP: WEB_DEV_INIT</h3>
-                    <div class="bounty-debrief">
-                        <h4 class="debrief-title">MISSION DEBRIEF //</h4>
-                        <ul class="debrief-list">
-                            <li>Learned core web development with HTML, CSS, and JavaScript</li>
-                            <li>Built responsive and interactive front-end designs</li>
-                            <li>Worked on practical projects with styling, layout & interactivity</li>
-                        </ul>
+                    <div class="timeline reveal" id="timeline">
+                        <article class="timeline-item reveal">
+                            <div class="timeline-date">2025 // INCOMING OPERATOR</div>
+                            <h3>Cognizant GenC 2025</h3>
+                            <p>Incoming GenC operator preparing for enterprise-grade engineering, team collaboration, and production delivery discipline.</p>
+                        </article>
+                        <article class="timeline-item reveal">
+                            <div class="timeline-date">2025 // COMPLETE</div>
+                            <h3>Tap Academy Full Stack Training</h3>
+                            <p>Built Java full stack applications, practiced Spring workflows, wrote MySQL queries, and used Git/GitHub collaboration patterns.</p>
+                        </article>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
+            </section>
 
-    <!-- EDUCATION -->
-    <section id="education" class="education-section">
-        <div class="section-container">
-            <div class="section-header">
-                <span class="section-tag">[MEM] BIOMETRIC CLEARANCE</span>
-                <h2 class="section-title">Access <span class="text-gradient">Log</span></h2>
-            </div>
-            <div class="bio-card-wrapper">
-                <div class="biometric-card">
-                    <div class="scanner-beam"></div>
-                    <div class="bio-bg-wireframe"></div>
-                    
-                    <div class="bio-header">
-                        <div class="bio-logo">
-                            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" width="32" height="32"><path d="M32 8L4 24l28 16 28-16L32 8z"/><path d="M12 30v16l20 12 20-12V30"/><path d="M56 24v20"/></svg>
-                        </div>
-                        <div class="bio-id">ID: 0x8F9A2</div>
+            <section class="section contact snap-section" id="contact">
+                <div class="container">
+                    <div class="section-head reveal">
+                        <span class="section-tag">[COM] SECURE TRANSMISSION</span>
+                        <h2 class="section-title">Contact <span>Channel</span></h2>
                     </div>
-
-                    <div class="bio-content">
-                        <div class="bio-avatar">
-                            <div class="bio-qr"></div>
+                    <div class="contact-grid">
+                        <div class="terminal reveal">
+                            <div class="term-top"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span>root@dileep:~/contact</span></div>
+                            <form id="contactForm" action="https://formspree.io/f/xeevdogn" method="POST">
+                                <div class="field"><label for="email">guest@system:~$ set EMAIL=</label><input id="email" name="email" type="email" placeholder="your_email@domain.com" required></div>
+                                <div class="field"><label for="message">guest@system:~$ set MESSAGE=</label><textarea id="message" name="message" placeholder="Enter transmission data..." required></textarea></div>
+                                <button class="btn primary" type="submit">TRANSMIT MESSAGE</button>
+                                <div class="form-status" id="formStatus">&gt; terminal ready.</div>
+                            </form>
                         </div>
-                        <div class="bio-details">
-                            <div class="bio-row">
-                                <span class="bio-label">SUBJECT:</span>
-                                <span class="bio-value text-gradient">DILEEP KUMAR C</span>
+                        <aside class="direct-card reveal">
+                            <div class="panel">
+                                <h3 class="mono text-yellow">DIRECT LINKS</h3>
+                                <div style="height:18px"></div>
+                                <a class="direct-link" href="https://mail.google.com/mail/?view=cm&fs=1&to=dileepkmrc@gmail.com" target="_blank" rel="noreferrer"><span>GMAIL</span><span>OPEN</span></a>
+                                <a class="direct-link" href="https://github.com/Dileep-kumarc" target="_blank" rel="noreferrer"><span>GITHUB</span><span>OPEN</span></a>
+                                <a class="direct-link" href="https://www.linkedin.com/in/dileepkumar-java/" target="_blank" rel="noreferrer"><span>LINKEDIN</span><span>OPEN</span></a>
+                                <a class="direct-link" href="https://wa.me/?text=Hi%20Dileep%2C%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20connect." target="_blank" rel="noreferrer"><span>WHATSAPP</span><span>OPEN</span></a>
                             </div>
-                            <div class="bio-row">
-                                <span class="bio-label">CLEARANCE LEVEL:</span>
-                                <span class="bio-value highlight-cyan">BACHELORS</span>
-                            </div>
-                            <div class="bio-row">
-                                <span class="bio-label">SECTOR:</span>
-                                <span class="bio-value highlight-magenta">INFORMATION SCIENCE</span>
-                            </div>
-                            <div class="bio-row">
-                                <span class="bio-label">FACILITY:</span>
-                                <span class="bio-value">Malnad College of Engineering</span>
-                            </div>
-                            <div class="bio-row">
-                                <span class="bio-label">STATUS:</span>
-                                <span class="bio-value highlight-yellow">GRADUATED [70%]</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="bio-footer">
-                        <div class="bio-barcode"></div>
+                        </aside>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
+            </section>
+        </main>
 
-    <!-- CONTACT CTA -->
-    <section id="contact" class="cta-section">
-        <div class="cta-bg">
-            <div class="cta-grid-pattern"></div>
-            <div class="cta-glow cta-glow-1"></div>
-            <div class="cta-glow cta-glow-2"></div>
-        </div>
-        <div class="cta-content">
-            <span class="cta-tagline">[ SYSTEM_ALERT: INITIATING_SECURE_COMMS ]</span>
-            <h2 class="cta-title" id="cta-title">
-                <span class="glitch" data-text="GET IN TOUCH">GET IN TOUCH</span>
-            </h2>
-            <p class="cta-desc">AWAITING TRANSMISSION. OPEN FOR CORPORATE CONTRACTS AND BLACK-OPS FREELANCE.</p>
-            <div class="terminal-form-container">
-                <div class="terminal-header">
-                    <div class="term-dots">
-                        <span class="term-dot close"></span>
-                        <span class="term-dot minimize"></span>
-                        <span class="term-dot maximize"></span>
-                    </div>
-                    <span class="term-title">root@dileep:~/contact</span>
-                </div>
-                <form id="contact-form" action="https://formspree.io/f/xeevdogn" method="POST" class="terminal-form">
-                    <div class="form-group">
-                        <label for="email" class="term-prompt"><span class="prompt-user">guest@system</span>:<span class="prompt-dir">~</span>$ set EMAIL=</label>
-                        <input type="email" name="email" id="email" class="term-input" required placeholder="your_email@domain.com">
-                    </div>
-                    <div class="form-group">
-                        <label for="message" class="term-prompt"><span class="prompt-user">guest@system</span>:<span class="prompt-dir">~</span>$ set MESSAGE=</label>
-                        <textarea name="message" id="message" rows="3" class="term-input term-textarea" required placeholder="Enter transmission data here..."></textarea>
-                    </div>
-                    <button type="submit" class="term-submit" id="submit-btn">./transmit.sh <span class="blink-cursor">_</span></button>
-                    <div id="form-status" class="form-status"></div>
-                </form>
-            </div>
-            <div class="cta-socials">
-                <a href="https://github.com/Dileep-kumarc" target="_blank" class="social-btn" title="GitHub">
-                    <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57"/></svg>
-                </a>
-                <a href="https://www.linkedin.com/in/dileepkumar-java/" target="_blank" class="social-btn" title="LinkedIn">
-                    <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer id="footer" class="footer">
-        <div class="footer-container">
+        <footer class="footer">
             <div class="footer-inner">
-                <span class="footer-logo"><span class="logo-text">SYS.NET.ID: </span><span class="logo-accent">DILEEP</span></span>
-                <p class="footer-legal">END_OF_TRANSMISSION // 0x2026</p>
+                <span>SYS.NET.ID: DILEEP</span>
+                <span>END_OF_TRANSMISSION // 0x2026</span>
             </div>
-        </div>
-    </footer>
+        </footer>
+    </div>
 
-    <script src="script.js"></script>
+    <script>
+        const $ = (selector, scope = document) => scope.querySelector(selector);
+        const $$ = (selector, scope = document) => Array.from(scope.querySelectorAll(selector));
+
+        window.addEventListener("load", () => {
+            setTimeout(() => $("#boot-loader")?.classList.add("hidden"), 1500);
+        });
+
+        const cursor = $("#cursor");
+        document.addEventListener("pointermove", event => {
+            if (!cursor) return;
+            cursor.style.left = event.clientX + "px";
+            cursor.style.top = event.clientY + "px";
+        });
+        $$("a,button,input,textarea").forEach(el => {
+            el.addEventListener("pointerenter", () => cursor?.classList.add("hot"));
+            el.addEventListener("pointerleave", () => cursor?.classList.remove("hot"));
+        });
+
+        const navbar = $("#navbar");
+        const hamburger = $("#hamburger");
+        const navLinks = $("#navLinks");
+        const navAnchors = $$(".nav-links a");
+        window.addEventListener("scroll", () => navbar.classList.toggle("scrolled", window.scrollY > 20), { passive: true });
+        hamburger.addEventListener("click", () => {
+            const open = navLinks.classList.toggle("open");
+            hamburger.classList.toggle("active", open);
+            hamburger.setAttribute("aria-expanded", String(open));
+        });
+        navAnchors.forEach(link => link.addEventListener("click", () => {
+            navLinks.classList.remove("open");
+            hamburger.classList.remove("active");
+            hamburger.setAttribute("aria-expanded", "false");
+        }));
+
+        const phrases = ["Java Full Stack Developer", "AI/ML Builder", "Problem Solver"];
+        const typeTarget = $("#typewriter");
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let deleting = false;
+        function typeLoop(){
+            const phrase = phrases[phraseIndex];
+            typeTarget.textContent = deleting ? phrase.slice(0, charIndex--) : phrase.slice(0, charIndex++);
+            let delay = deleting ? 34 : 62;
+            if (!deleting && charIndex > phrase.length) { delay = 1200; deleting = true; }
+            if (deleting && charIndex < 0) { deleting = false; phraseIndex = (phraseIndex + 1) % phrases.length; delay = 320; }
+            setTimeout(typeLoop, delay);
+        }
+        typeLoop();
+
+        const revealObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add("visible");
+                revealObserver.unobserve(entry.target);
+            });
+        }, { threshold: 0.16 });
+        $$(".reveal").forEach(el => revealObserver.observe(el));
+
+        const statObserver = new IntersectionObserver(entries => {
+            if (!entries[0].isIntersecting) return;
+            $$("#stats [data-count]").forEach(el => {
+                const target = Number(el.dataset.count);
+                const suffix = el.dataset.suffix || "";
+                const start = performance.now();
+                const duration = 1250;
+                function frame(now){
+                    const progress = Math.min((now - start) / duration, 1);
+                    const eased = 1 - Math.pow(1 - progress, 3);
+                    el.textContent = Math.floor(eased * target) + suffix;
+                    if (progress < 1) requestAnimationFrame(frame);
+                }
+                requestAnimationFrame(frame);
+            });
+            statObserver.disconnect();
+        }, { threshold: 0.4 });
+        statObserver.observe($("#stats"));
+
+        const skillsObserver = new IntersectionObserver(entries => {
+            if (!entries[0].isIntersecting) return;
+            $$(".skill-fill").forEach(fill => fill.style.width = fill.dataset.width);
+            skillsObserver.disconnect();
+        }, { threshold: 0.35 });
+        skillsObserver.observe($("#skillsPanel"));
+
+        const timelineObserver = new IntersectionObserver(entries => {
+            if (entries[0].isIntersecting) $("#timeline").classList.add("visible");
+        }, { threshold: 0.35 });
+        timelineObserver.observe($("#timeline"));
+
+        const sections = ["about","projects","experience","contact"].map(id => $("#" + id));
+        const navObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                navAnchors.forEach(link => link.classList.toggle("active", link.getAttribute("href") === "#" + entry.target.id));
+            });
+        }, { rootMargin: "-35% 0px -55% 0px", threshold: 0.01 });
+        sections.forEach(section => navObserver.observe(section));
+
+        $$(".filter-btn").forEach(button => {
+            button.addEventListener("click", () => {
+                $$(".filter-btn").forEach(btn => btn.classList.remove("active"));
+                button.classList.add("active");
+                const filter = button.dataset.filter;
+                $$(".project-card").forEach(card => {
+                    card.classList.toggle("hide", filter !== "all" && card.dataset.category !== filter);
+                });
+            });
+        });
+
+        $("#resumeBtn").addEventListener("click", () => {
+            const resume = [
+                "DILEEP KUMAR C",
+                "Java Full Stack Developer | AI/ML Builder | Problem Solver",
+                "",
+                "Email: dileepkmrc@gmail.com",
+                "GitHub: https://github.com/Dileep-kumarc",
+                "LinkedIn: https://www.linkedin.com/in/dileepkumar-java/",
+                "",
+                "Core Skills: Java, Spring Boot, SQL, HTML/CSS, JavaScript, Python",
+                "Projects: College Notes Gallery, Brain Tumor Detection, MultiCalc Utility, AI Riddle Battle",
+                "Education: Information Science, Malnad College of Engineering",
+                "Experience: Cognizant GenC 2025 Incoming Operator; Tap Academy Full Stack Training"
+            ].join("\n");
+            const blob = new Blob([resume], { type: "text/plain" });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = "Dileep_Kumar_C_Resume.txt";
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+            URL.revokeObjectURL(url);
+        });
+
+        const contactForm = $("#contactForm");
+        const formStatus = $("#formStatus");
+        contactForm.addEventListener("submit", async event => {
+            event.preventDefault();
+            formStatus.textContent = "> transmitting packet...";
+            const submit = contactForm.querySelector("button[type='submit']");
+            submit.disabled = true;
+            try {
+                const response = await fetch(contactForm.action, {
+                    method: "POST",
+                    body: new FormData(contactForm),
+                    headers: { "Accept": "application/json" }
+                });
+                if (!response.ok) throw new Error("Transmission failed");
+                formStatus.textContent = "> transmission successful. connection logged.";
+                contactForm.reset();
+            } catch (error) {
+                formStatus.textContent = "> network blocked. use direct links or email: dileepkmrc@gmail.com";
+            } finally {
+                submit.disabled = false;
+            }
+        });
+    </script>
 </body>
 </html>
