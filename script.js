@@ -100,13 +100,13 @@ function animateCounters() {
 // ═══════════ RADAR CHART ═══════════
 const radarData = [
     { label: 'Java', value: 0.85 },
-    { label: 'Python', value: 0.70 },
+    { label: 'Spring Boot', value: 0.78 },
     { label: 'SQL', value: 0.80 },
-    { label: 'Front-End', value: 0.90 },
-    { label: 'Back-End', value: 0.80 },
+    { label: 'HTML/CSS', value: 0.90 },
+    { label: 'JavaScript', value: 0.82 },
+    { label: 'Python', value: 0.70 },
     { label: 'Git/GitHub', value: 0.75 },
-    { label: 'Algorithms', value: 0.75 },
-    { label: 'System Design', value: 0.65 }
+    { label: 'Testing', value: 0.72 }
 ];
 let radarDrawn = false;
 

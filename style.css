@@ -182,9 +182,17 @@ body::after {
 /* Radar Chart - Cyberpunk Style */
 .radar-container{width:100%;display:flex;justify-content:center;align-items:center;margin-bottom:20px;position:relative;}
 #radar-chart{max-width:100%;height:auto;filter:drop-shadow(0 0 10px rgba(0,240,255,0.2));}
-.skill-tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+.skill-clusters{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:24px;}
+.skill-cluster{position:relative;background:rgba(0,240,255,0.04);border:1px solid rgba(0,240,255,0.18);border-left:2px solid var(--cyan);padding:16px 14px 14px;clip-path:polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%);}
+.skill-cluster:hover{border-color:var(--cyan);box-shadow:inset 0 0 18px rgba(0,240,255,0.08),0 0 14px rgba(0,240,255,0.1);}
+.cluster-label{display:block;font-family:var(--font-mono);font-size:0.68rem;color:var(--yellow);letter-spacing:2px;margin-bottom:10px;text-transform:uppercase;}
+.skill-tags{display:flex;flex-wrap:wrap;gap:8px}
 .skill-tag-sm{font-family:var(--font-mono);font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;padding:6px 14px;background:rgba(255,0,60,0.1);border:1px solid var(--magenta);color:var(--text);transition:all var(--tr);clip-path:polygon(5px 0, 100% 0, calc(100% - 5px) 100%, 0 100%);}
 .skill-tag-sm:hover{background:var(--magenta);color:#fff;box-shadow:0 0 15px var(--magenta);transform:scale(1.05);}
+
+@media(max-width:560px){
+    .skill-clusters{grid-template-columns:1fr;}
+}
 
 /* PROJECTS */
 .projects-section{padding:100px 0 140px;position:relative;background:#050505;}
@@ -215,6 +223,7 @@ body::after {
 .data-tech{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px;}
 .tech-node{font-family:var(--font-mono);font-size:0.7rem;color:var(--bg);background:var(--text);padding:4px 10px;font-weight:bold;letter-spacing:1px;text-transform:uppercase;}
 
+.data-actions{display:flex;flex-wrap:wrap;gap:12px;}
 .cyber-action-btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:0.85rem;color:var(--magenta);border:1px solid var(--magenta);padding:10px 20px;text-transform:uppercase;letter-spacing:2px;font-weight:bold;transition:all 0.3s;width:max-content;background:transparent;cursor:pointer;}
 .cyber-action-btn:hover{background:var(--magenta);color:#fff;box-shadow:0 0 15px rgba(255,0,60,0.5);}
 .cyber-action-btn.highlight{color:var(--cyan);border-color:var(--cyan);}
