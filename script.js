@@ -66,7 +66,32 @@ const navToggle = document.getElementById('nav-toggle');
 const navLinks = document.getElementById('nav-links');
 navToggle.addEventListener('click', () => navLinks.classList.toggle('active'));
 
-// ═══════════ TYPING EFFECT ═══════════
+// INTERACTIVE LIGHT FIELD
+const cursorAura = document.getElementById('cursor-aura');
+const interactiveSurfaces = document.querySelectorAll('.cyber-project,.about-text-card,.skills-card,.bounty-card,.biometric-card,.cta-content,.terminal-form-container');
+
+document.addEventListener('pointermove', (event) => {
+  if (cursorAura) {
+    cursorAura.classList.add('active');
+    cursorAura.style.transform = `translate3d(${event.clientX - 140}px,${event.clientY - 140}px,0)`;
+  }
+});
+
+document.addEventListener('pointerleave', () => {
+  if (cursorAura) cursorAura.classList.remove('active');
+});
+
+interactiveSurfaces.forEach(surface => {
+  surface.addEventListener('pointermove', (event) => {
+    const rect = surface.getBoundingClientRect();
+    const x = ((event.clientX - rect.left) / rect.width) * 100;
+    const y = ((event.clientY - rect.top) / rect.height) * 100;
+    surface.style.setProperty('--mx', `${x}%`);
+    surface.style.setProperty('--my', `${y}%`);
+  });
+});
+
+// TYPING EFFECT
 const phrases = ['Java Full Stack Developer', 'NEURAL_NET.ARCHITECT', 'ZERO_BUG_PROTOCOL // ACTIVE', 'SYS.WEB.ENGINEER'];
 let phraseIdx = 0, charIdx = 0, isDeleting = false;
 const typingEl = document.getElementById('typing-text');
@@ -256,12 +281,36 @@ if (skillsCard) skillsObs.observe(skillsCard);
 // ═══════════ SMOOTH SCROLL ═══════════
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function(e) {
-    const target = document.querySelector(this.getAttribute('href'));
+    const href = this.getAttribute('href');
+    if (href === '#') {
+      e.preventDefault();
+      navLinks.classList.remove('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+    const target = document.querySelector(href);
     if (target) { e.preventDefault(); navLinks.classList.remove('active'); target.scrollIntoView({ behavior: 'smooth' }); }
   });
 });
 
 // ═══════════ DECRYPT TEXT EFFECT ═══════════
+// Active nav telemetry
+const sectionLinks = Array.from(document.querySelectorAll('.nav-links a[href^="#"]'));
+const trackedSections = sectionLinks
+  .map(link => document.querySelector(link.getAttribute('href')))
+  .filter(Boolean);
+
+const navObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    sectionLinks.forEach(link => {
+      link.classList.toggle('active', link.getAttribute('href') === `#${entry.target.id}`);
+    });
+  });
+}, { rootMargin: '-35% 0px -55% 0px', threshold: 0.01 });
+
+trackedSections.forEach(section => navObserver.observe(section));
+
 const decryptElements = document.querySelectorAll('.decrypt-text');
 const hexAlphabet = '0123456789ABCDEF';
 

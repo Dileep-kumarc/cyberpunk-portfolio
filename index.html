@@ -13,6 +13,13 @@
 <body>
     <!-- PARTICLES CANVAS -->
     <canvas id="particles-canvas"></canvas>
+    <div class="cursor-aura" id="cursor-aura" aria-hidden="true"></div>
+    <div class="site-frame" aria-hidden="true">
+        <span class="frame-corner frame-tl"></span>
+        <span class="frame-corner frame-tr"></span>
+        <span class="frame-corner frame-bl"></span>
+        <span class="frame-corner frame-br"></span>
+    </div>
 
     <nav id="navbar" class="navbar">
         <div class="nav-container">
@@ -39,6 +46,7 @@
             </video>
             <div class="hero-overlay"></div>
             <div class="hero-scanlines"></div>
+            <div class="hero-grid"></div>
         </div>
         <div class="hero-content">
             <div class="hero-badge">
@@ -76,9 +84,14 @@
                     <span class="hero-stat-label">CNN_PRECISION</span>
                 </div>
             </div>
+            <div class="hero-command-strip">
+                <span>BUILD: JAVA_FULL_STACK</span>
+                <span>MODE: REMOTE_READY</span>
+                <span>COMMS: OPEN</span>
+            </div>
         </div>
         <div class="scroll-indicator" id="scroll-indicator">
-            <span>▼ INIT</span>
+            <span>[ INIT ]</span>
             <div class="scroll-line"></div>
         </div>
     </section>
@@ -115,6 +128,20 @@
                         </div>
                     </div>
                     <p class="about-text decrypt-text" data-original="Information Science graduate (70% aggregate). Strong foundation in HTML and CSS with experience building responsive and user-friendly web pages. Passionate about logical thinking and continuous system upgrades.">Information Science graduate (70% aggregate). Strong foundation in HTML and CSS with experience building responsive and user-friendly web pages. Passionate about logical thinking and continuous system upgrades.</p>
+                    <div class="profile-metrics">
+                        <div class="profile-metric">
+                            <span class="metric-value">03</span>
+                            <span class="metric-label">PROJECT_NODES</span>
+                        </div>
+                        <div class="profile-metric">
+                            <span class="metric-value">02</span>
+                            <span class="metric-label">FIELD_OPS</span>
+                        </div>
+                        <div class="profile-metric">
+                            <span class="metric-value">70%</span>
+                            <span class="metric-label">ACADEMIC_SYNC</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="skills-card">
                     <div class="card-corner card-corner-tl"></div>
@@ -175,6 +202,7 @@
                 
                 <!-- PROJECT 01 -->
                 <article class="cyber-project">
+                    <span class="project-index">P-01</span>
                     <div class="cyber-project-image">
                         <img src="assests/project1.png" alt="College Notes Gallery" class="project-img">
                         <div class="image-scanline"></div>
@@ -191,6 +219,11 @@
                         <div class="data-tech">
                             <span class="tech-node">PHP</span><span class="tech-node">MySQL</span><span class="tech-node">Bootstrap</span><span class="tech-node">JS</span>
                         </div>
+                        <div class="project-readouts">
+                            <span>AUTH_LOCK</span>
+                            <span>ROLE_ACCESS</span>
+                            <span>RESOURCE_HUB</span>
+                        </div>
                         <div class="data-actions">
                             <a href="https://github.com/Dileep-kumarc/college-notes-gallery-" target="_blank" class="cyber-action-btn">
                                 ACCESS_REPO <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57"/></svg>
@@ -201,6 +234,7 @@
 
                 <!-- PROJECT 02 -->
                 <article class="cyber-project reverse">
+                    <span class="project-index">P-02</span>
                     <div class="cyber-project-image">
                         <img src="assests/project2.png" alt="Brain Tumor Detection" class="project-img">
                         <div class="image-scanline"></div>
@@ -217,6 +251,11 @@
                         <div class="data-tech">
                             <span class="tech-node">Python</span><span class="tech-node">TensorFlow</span><span class="tech-node">OpenCV</span><span class="tech-node">Streamlit</span>
                         </div>
+                        <div class="project-readouts">
+                            <span>CNN_MODEL</span>
+                            <span>92%_ACCURACY</span>
+                            <span>MRI_CLASSIFIER</span>
+                        </div>
                         <div class="data-actions">
                             <a href="https://github.com/Dileep-kumarc/Brain-Tumor-Detection-using-CNN" target="_blank" class="cyber-action-btn">
                                 ACCESS_REPO <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57"/></svg>
@@ -230,6 +269,7 @@
 
                 <!-- PROJECT 03 -->
                 <article class="cyber-project">
+                    <span class="project-index">P-03</span>
                     <div class="cyber-project-image">
                         <img src="assests/project3.png" alt="Free Online Calculators" class="project-img">
                         <div class="image-scanline"></div>
@@ -245,6 +285,11 @@
                         <p class="data-desc">High-performance, SEO-optimized computational hub. Actively serving 100+ concurrent users with financial, age, and compound interest algorithms. Mobile-responsive architecture.</p>
                         <div class="data-tech">
                             <span class="tech-node">HTML</span><span class="tech-node">CSS</span><span class="tech-node">JS</span><span class="tech-node">Bootstrap</span>
+                        </div>
+                        <div class="project-readouts">
+                            <span>SEO_READY</span>
+                            <span>100+_USERS</span>
+                            <span>MOBILE_SYNC</span>
                         </div>
                         <div class="data-actions">
                             <a href="https://dileep-kumarc.github.io/Multicalc/" target="_blank" class="cyber-action-btn highlight">
